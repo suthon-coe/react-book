@@ -16,21 +16,25 @@ class NamePage extends Component {
         (async ()=>{
             let names = await BookAPI.getNames()
             this.allNames = names
-            this.setState({names})
+            let params = new URLSearchParams(this.props.history.location.search);            
+            this.handleSearchTextChanged(params.get('searchText') || '');
         })()
     }
-    handleSearchTextChanged = (event) => {
-        let text = event.target.value  
+    handleSearchInputChanged = (event) => {
+        let text = event.target.value 
+        this.handleSearchTextChanged(text)
+    }
+    handleSearchTextChanged = (text) => {         
         let names = this.state.names
-        if(text){
-            names = _.filter(this.allNames, n => n.list_name.search(new RegExp(text, "i")) >= 0)            
-        }      
+        names = _.filter(this.allNames, n => n.list_name.search(new RegExp(text, "i")) >= 0)                
+        this.props.history.replace(`${this.props.history.location.pathname}?searchText=${text}`)        
         this.setState({searchText: text, names})
     }
+    
     render() {
         return (
         <div>
-            <input type="text" value={this.state.searchText} onChange={this.handleSearchTextChanged}/>
+            <input type="text" value={this.state.searchText} onChange={this.handleSearchInputChanged}/>
             {
                 this.state.names.map(n => <NameItem {...n} match={this.props.match} key={n.list_name_encoded}/>)
             }
