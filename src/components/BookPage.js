@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 import BookAPI from '../api';
-const BookItem = ({title}) => (
-    <div>{title}</div>
+const BookItem = ({title, primary_isbn13, match}) => (
+    <div><Link to={`${match.url}/${primary_isbn13}`}>{title}</Link></div>
+)
+const BookDetail = ({match}) => (
+    <div>{match.params.primary_isbn13}</div>
 )
 class BookPage extends Component {
     constructor(props){
@@ -18,8 +21,9 @@ class BookPage extends Component {
             <div>
                 <div>Book from {this.props.match.params.list_name_encoded}</div>
                 {
-                    this.state.books.map(b => <BookItem {...b}/>)
+                    this.state.books.map(b => <BookItem {...b} match={this.props.match} key={b.primary_isbn13}/>)
                 }
+                <Route path={`${this.props.match.url}/:primary_isbn13`} render={BookDetail}/>
             </div>
         );
     }
