@@ -12,6 +12,7 @@ class NamePage extends Component {
         super(props)
         this.state = {names: [], searchText: ''}
     }
+    
     componentDidMount(){
         (async ()=>{
             let names = await BookAPI.getNames()
@@ -20,16 +21,27 @@ class NamePage extends Component {
             this.handleSearchTextChanged(params.get('searchText') || '');
         })()
     }
+
+    componentWillReceiveProps(nextProps){
+        let params = new URLSearchParams(nextProps.history.location.search);
+        if(params.get('searchText') != this.state.searchText){            
+            console.log('updating')            
+            this.handleSearchTextChanged(params.get('searchText') || '');
+        }            
+    }
+
     handleSearchInputChanged = (event) => {
-        let text = event.target.value 
+        let text = event.target.value         
+        this.props.history.replace(`${this.props.history.location.pathname}?searchText=${text}`)
         this.handleSearchTextChanged(text)
     }
+
     handleSearchTextChanged = (text) => {         
         let names = this.state.names
-        names = _.filter(this.allNames, n => n.list_name.search(new RegExp(text, "i")) >= 0)                
-        this.props.history.replace(`${this.props.history.location.pathname}?searchText=${text}`)        
+        names = _.filter(this.allNames, n => n.list_name.search(new RegExp(text, "i")) >= 0)                                 
         this.setState({searchText: text, names})
     }
+    compon
     
     render() {
         return (
