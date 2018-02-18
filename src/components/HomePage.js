@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Box  } from 'bloomer';
 
 class HomePage extends Component {
   render() {
     return (
-      <div>
+      <Box>
         Home
-      </div>
+      </Box>
     );
   }
 }
