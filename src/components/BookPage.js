@@ -13,8 +13,10 @@ class BookPage extends Component {
         this.state = {books: []}
     }
     componentDidMount(){
-        let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
-        this.setState({books})
+        (async() => {
+            let books = await BookAPI.getBooks(this.props.match.params.list_name_encoded)
+            this.setState({books})
+        })()        
     }
     renderBookDetail = (props) => {
         return (<BookDetail {...props} list_name_encoded={this.props.match.params.list_name_encoded}/>)

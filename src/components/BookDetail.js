@@ -9,9 +9,11 @@ class BookDetail extends Component {
         this.state = {book: null};
     }
     componentDidMount(){
-        let books = BookAPI.getBooks(this.props.list_name_encoded)
-        let primary_isbn13 = this.props.match.params.primary_isbn13
-        this.setState({book: _.find(books, ['primary_isbn13', primary_isbn13])})
+        (async ()=>{
+            let books = await BookAPI.getBooks(this.props.list_name_encoded)
+            let primary_isbn13 = this.props.match.params.primary_isbn13
+            this.setState({book: _.find(books, ['primary_isbn13', primary_isbn13])})
+        })()        
     }
     handleModalClose = () => {
         this.props.history.goBack()
