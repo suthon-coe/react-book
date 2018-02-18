@@ -12,8 +12,10 @@ class NamePage extends Component {
         this.state = {names: []}
     }
     componentDidMount(){
-        let names = BookAPI.getNames()
-        this.setState({names})
+        (async ()=>{
+            let names = await BookAPI.getNames()
+            this.setState({names})
+        })()
     }
     render() {
         return (
