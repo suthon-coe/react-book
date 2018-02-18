@@ -16,6 +16,9 @@ class BookPage extends Component {
         let books = BookAPI.getBooks(this.props.match.params.list_name_encoded)
         this.setState({books})
     }
+    renderBookDetail = (props) => {
+        return (<BookDetail {...props} list_name_encoded={this.props.match.params.list_name_encoded}/>)
+    }
     render() {
         return (
             <div>
@@ -23,7 +26,8 @@ class BookPage extends Component {
                 {
                     this.state.books.map(b => <BookItem {...b} match={this.props.match} key={b.primary_isbn13}/>)
                 }
-                <Route path={`${this.props.match.url}/:primary_isbn13`} component={BookDetail}/>
+                <Route path={`${this.props.match.url}/:primary_isbn13`} 
+                    render={this.renderBookDetail}/>
             </div>
         );
     }
