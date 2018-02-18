@@ -19,7 +19,7 @@ class NamePage extends Component {
         return (
         <div>
             {
-                this.state.names.map(n => <NameItem {...n} match={this.props.match}/>)
+                this.state.names.map(n => <NameItem {...n} match={this.props.match} key={n.list_name_encoded}/>)
             }
         </div>
         );
