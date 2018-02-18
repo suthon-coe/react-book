@@ -3,3 +3,4 @@ https://github.com/suthon-coe/react-book
 >> create-react-app react-book
 >> yarn add react-router-dom
 >> yarn add bulma bloomer lodash
+>> yarn add axios
