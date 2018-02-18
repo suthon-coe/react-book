@@ -1,5 +1,7 @@
 const BookAPI = {
+    apiKey: '73b19491b83909c7e07016f4bb4644f9:2:60667290',
     getNames: function(){
+        //http://api.nytimes.com/svc/books/v3/lists/names.json
         return [
             {
             "list_name": "Combined Print and E-Book Fiction",
@@ -14,6 +16,7 @@ const BookAPI = {
         ]
     },
     getBooks: function(list_name_encoded){
+        //http://api.nytimes.com/svc/books/v3/lists/combined-print-and-e-book-fiction.json
         return [
             {
                 "rank": 1,               

@@ -34,7 +34,7 @@ class BookDetail extends Component {
                                     <Image src={book.book_image} />
                                 </MediaLeft>
                                 <MediaContent>
-                                    <Title isSize={4}>{book.title}</Title>
+                                    <Title isSize={3}>{book.title}</Title>
                                     <Subtitle isSize={6}>{book.author}</Subtitle>
                                 </MediaContent>
                             </Media>
