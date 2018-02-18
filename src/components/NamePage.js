@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import BookAPI from '../api';
-const NameItem = ({list_name}) => (
-    <div>{list_name}</div>
+import { Link } from "react-router-dom";
+
+const NameItem = ({list_name, list_name_encoded, match}) => (
+    <div><Link to={`${match.url}/${list_name_encoded}`}>{list_name}</Link></div>
 )
 
 class NamePage extends Component {
@@ -17,7 +19,7 @@ class NamePage extends Component {
         return (
         <div>
             {
-                this.state.names.map(n => <NameItem {...n}/>)
+                this.state.names.map(n => <NameItem {...n} match={this.props.match}/>)
             }
         </div>
         );

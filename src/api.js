@@ -24,8 +24,7 @@ const BookAPI = {
                 "author": "Kristin Hannah",
                 "book_image": "https://s1.nyt.com/du/books/images/9781250165619.jpg",
                 "book_image_width": 326,
-                "book_image_height": 495,
-                
+                "book_image_height": 495,                
             },
             {
                 "rank": 2,
