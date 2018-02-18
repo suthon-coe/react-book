@@ -15,9 +15,6 @@ class BookDetail extends Component {
             this.setState({book: _.find(books, ['primary_isbn13', primary_isbn13])})
         })()        
     }
-    handleModalClose = () => {
-        this.props.history.goBack()
-    }
 
     render() {
         let book = this.state.book;
@@ -27,7 +24,7 @@ class BookDetail extends Component {
         
         return (
             <Modal isActive={true}>
-                <ModalBackground onClick={this.handleModalClose}/>
+                <ModalBackground onClick={this.props.onModalClose}/>
                 <ModalContent>                    
                     <Card>
                         <CardContent>
@@ -48,7 +45,7 @@ class BookDetail extends Component {
                         </CardContent>
                     </Card>
                 </ModalContent>
-                <ModalClose onClick={this.handleModalClose}/>
+                <ModalClose onClick={this.props.onModalClose}/>
             </Modal>
         );
     }

@@ -13,13 +13,23 @@ class BookPage extends Component {
         this.state = {books: []}
     }
     componentDidMount(){
+        this.startFromBookPage = this.props.match.isExact;
         (async() => {
             let books = await BookAPI.getBooks(this.props.match.params.list_name_encoded)
             this.setState({books})
         })()        
     }
+    handleModalClose = () => {
+        console.log(this.startFromBookPage)
+        if(this.startFromBookPage){
+            this.props.history.goBack()
+        }else{
+            this.props.history.replace(this.props.match.url)
+        }
+    }
+
     renderBookDetail = (props) => {
-        return (<BookDetail {...props} list_name_encoded={this.props.match.params.list_name_encoded}/>)
+        return (<BookDetail onModalClose={this.handleModalClose} {...props} list_name_encoded={this.props.match.params.list_name_encoded}/>)
     }
     render() {
         return (
