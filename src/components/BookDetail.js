@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, ModalBackground, ModalContent, ModalClose, Card, CardContent, Media, Content, Image, Title, Subtitle, MediaContent, MediaLeft } from 'bloomer';
+import { Modal, ModalBackground, ModalContent, ModalClose, Card, CardContent, Media, Content, Image, Title, Subtitle, MediaContent, MediaRight } from 'bloomer';
 import BookAPI from '../api';
 import _ from 'lodash';
 
@@ -31,14 +31,14 @@ class BookDetail extends Component {
                 <ModalContent>                    
                     <Card>
                         <CardContent>
-                            <Media>
-                                <MediaLeft>
-                                    <Image src={book.book_image} />
-                                </MediaLeft>
-                                <MediaContent>
+                            <Media>                                
+                                <MediaContent style={{height: '200px'}}>
                                     <Title isSize={3}>{book.title}</Title>
                                     <Subtitle isSize={6}>{book.author}</Subtitle>
                                 </MediaContent>
+                                <MediaRight>
+                                    <img src={book.book_image} style={{height: '200px'}}/>
+                                </MediaRight>
                             </Media>
                             <Content>
                                 {book.description}
